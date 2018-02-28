@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xmlns="http://java.sun.com/xml/ns/javaee" 
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
 
-<servlet>
- <servlet-name>dispatcherServlet</servlet-name>
- <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
- <init-param>
- 	<param-name>contextConfigLocation</param-name>
- 	<param-value>WEB-INF/dispatcherServlet-servlet.xml</param-value>
- </init-param>
- <load-on-startup>1</load-on-startup>
-</servlet>
-<servlet-mapping>
-	<servlet-name>dispatcherServlet</servlet-name>
-	<url-pattern>/</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF/dispatcherServlet-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<!-- 临时文件的目录 -->
+			<location>E:/</location>
+			<!-- 上传文件最大2M -->
+			<max-file-size>2097152</max-file-size>
+			<!-- 上传文件整个请求不超过4M -->
+			<max-request-size>4194304</max-request-size>
+		</multipart-config>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
 
-<welcome-file-list>
-	<welcome-file>index</welcome-file>
-</welcome-file-list>
+	<welcome-file-list>
+		<welcome-file>index</welcome-file>
+	</welcome-file-list>
 
 </web-app>
